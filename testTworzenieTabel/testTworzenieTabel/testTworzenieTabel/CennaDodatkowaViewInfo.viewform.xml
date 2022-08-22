@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<DataForm Contexts="License.All"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+          xmlns="http://www.enova.pl/schema/form.xsd"
+          xsi:schemaLocation="http://www.enova.pl/schema/ http://www.enova.pl/schema/form.xsd">
+	<Flow Name="FilterPanel">
+		<Field EditValue="{WParams.Towar}" CaptionHtml="Wybierz Towar"  />
+		<Field EditValue="{WParams.DataOd}" CaptionHtml="Wybierz Towar"  />
+		<Field EditValue="{WParams.DataDo}" CaptionHtml="Wybierz Towar"  />
+	</Flow>
+	<Grid Name="List" RemoveButton="None" EditButton="None" NewButton="None" IsToolbarVisible="false">
+		<Field EditValue="{Towar}" CaptionHtml="Towar" Width="40"/>
+		<Field EditValue="{CenaNetto}" CaptionHtml="Cena Netto" Width="20"/>
+		<Field EditValue="{CenaBrutto}" CaptionHtml="Cena Brutto" Width="20"/>
+		<Field EditValue="{DataOd}" CaptionHtml="Data Od" Width="20"/>
+		<Field EditValue="{DataDo}" CaptionHtml="Data Do" Width="20"/>
+	</Grid>
+</DataForm>
