@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<DataForm xmlns="http://www.enova.pl/schema/form.xsd"
+          xsi:schemaLocation="http://www.enova.pl/schema/ http://www.enova.pl/schema/form.xsd"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+          RightName="Page:CennaDodatkowaPage"
+          Priority="10"
+          DataType="Soneta.Towary.Towar, Soneta.Handel">
+	<Page Name="CennaDodatkowaPage" CaptionHtml="Cenny Dodatkowe" DataContext="{new TowaryExtender}">
+		<Group CaptionHtml="Cenny Dodatkowe" Width="*" Height="*">
+			<Grid Name="Cenny" EditValue="{CennyDodatkowe}" Width="*" Height="*"
+				  EditButton="Auto" IsToolbarVisible="true">
+				<Field EditValue="{Towar}" Width="*"/>
+				<Field EditValue="{CenaNetto}" Width="20" />
+				<Field EditValue="{CenaBrutto}" Width="20"/>
+				<Field EditValue="{DataOd}" Width="20"/>
+				<Field EditValue="{DataDo}" Width="20"/>
+			</Grid>
+		</Group>
+	</Page>
+</DataForm>
