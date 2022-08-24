@@ -8,8 +8,12 @@
           DataType="Soneta.Towary.Towar, Soneta.Handel">
 	<Page Name="CennaDodatkowaPage" CaptionHtml="Cenny Dodatkowe" DataContext="{new TowaryExtender}">
 		<Group CaptionHtml="Cenny Dodatkowe" Width="*" Height="*">
-			<Grid Name="Cenny" EditValue="{CennyDodatkowe}" Width="*" Height="*"
-				  EditButton="Auto" IsToolbarVisible="true">
+			<Flow Name="FilterPanel">
+				<Field EditValue="{WParams.DataOd}" CaptionHtml="Wybierz Data od"  />
+				<Field EditValue="{WParams.DataDo}" CaptionHtml="Wybierz Data do"  />
+			</Flow>
+			<Grid Name="List" EditValue="{CennyDodatkowe}" Width="*" Height="*"
+				  NewButton="Auto"  EditButton="Auto" IsToolbarVisible="true">  
 				<Field EditValue="{Towar}" Width="*"/>
 				<Field EditValue="{CenaNetto}" Width="20" />
 				<Field EditValue="{CenaBrutto}" Width="20"/>
@@ -19,3 +23,5 @@
 		</Group>
 	</Page>
 </DataForm>
+ 
+

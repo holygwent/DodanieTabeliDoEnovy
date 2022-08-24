@@ -5,9 +5,9 @@
           xmlns="http://www.enova.pl/schema/form.xsd"
           xsi:schemaLocation="http://www.enova.pl/schema/ http://www.enova.pl/schema/form.xsd">
 	<Flow Name="FilterPanel">
-		<Field EditValue="{WParams.Towar}" CaptionHtml="Wybierz Towar"  />
-		<Field EditValue="{WParams.DataOd}" CaptionHtml="Wybierz Towar"  />
-		<Field EditValue="{WParams.DataDo}" CaptionHtml="Wybierz Towar"  />
+		<Field EditValue="{WParams.Towar}" CaptionHtml="Wybierz jeden Towar"  />
+		<Field EditValue="{WParams.DataOd}" CaptionHtml="Wybierz Data od"  />
+		<Field EditValue="{WParams.DataDo}" CaptionHtml="Wybierz Data do"  />
 	</Flow>
 	<Grid Name="List" RemoveButton="None" EditButton="None" NewButton="None" IsToolbarVisible="false">
 		<Field EditValue="{Towar}" CaptionHtml="Towar" Width="40"/>

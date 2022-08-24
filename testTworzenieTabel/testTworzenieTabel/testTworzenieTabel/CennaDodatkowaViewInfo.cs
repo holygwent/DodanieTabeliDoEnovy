@@ -68,7 +68,7 @@ namespace testTworzenieTabel
             {
                 view.Condition &= new FieldCondition.Equal("Towar", pars.Towar);
             }
-            if (pars.DataOd.IsNull)
+            if (!pars.DataOd.IsNull)
             {
                 view.Condition &= new FieldCondition.GreaterEqual("DataOd", pars.DataOd);
             }
@@ -116,9 +116,6 @@ namespace testTworzenieTabel
             get { return _towar; }
             set { _towar = value; OnChanged(); }
         }
-
-
-
 
     }
 }
