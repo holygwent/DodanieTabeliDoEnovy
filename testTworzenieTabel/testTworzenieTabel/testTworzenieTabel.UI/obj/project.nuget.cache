@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "GVEkuA6DCpRGM6E9viakyERbtMco7ruDAhqOBDkmGimZRVfSxISG/U/jtgvkGhRKYVWSKhlJZyiUhptT/9tZLg==",
+  "dgSpecHash": "qR5LDhLVhs7tjj5eVuUPgGUN39G8xsaT+ORnDxi91VOs8Tj74Km7pnhTKrjoggfAZ7iFWBqvmL8jx9P3wJQFFQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\48502\\source\\repos\\testTworzenieTabel\\testTworzenieTabel\\testTworzenieTabel.UI\\testTworzenieTabel.UI.csproj",
+  "projectFilePath": "C:\\Users\\48502\\source\\repos\\DodanieTabeliDoEnovy\\testTworzenieTabel\\testTworzenieTabel\\testTworzenieTabel.UI\\testTworzenieTabel.UI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\48502\\.nuget\\packages\\csvhelper\\27.0.1\\csvhelper.27.0.1.nupkg.sha512",
     "C:\\Users\\48502\\.nuget\\packages\\destructurama.jsonnet\\2.0.0\\destructurama.jsonnet.2.0.0.nupkg.sha512",
