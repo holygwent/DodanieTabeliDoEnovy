@@ -7,3 +7,12 @@ C:\Users\48502\source\repos\testTworzenieTabel\testTworzenieTabel\bin\Debug\net4
 C:\Users\48502\source\repos\testTworzenieTabel\testTworzenieTabel\bin\Debug\net472\testTworzenieTabel.pdb
 C:\Users\48502\source\repos\testTworzenieTabel\testTworzenieTabel\testTworzenieTabel\obj\Debug\net472\testTworzenieTabel.dll
 C:\Users\48502\source\repos\testTworzenieTabel\testTworzenieTabel\testTworzenieTabel\obj\Debug\net472\testTworzenieTabel.pdb
+C:\Users\48502\source\repos\DodanieTabeliDoEnovy\testTworzenieTabel\testTworzenieTabel\testTworzenieTabel\obj\Debug\net472\testTworzenieTabel.csproj.AssemblyReference.cache
+C:\Users\48502\source\repos\DodanieTabeliDoEnovy\testTworzenieTabel\testTworzenieTabel\testTworzenieTabel\obj\Debug\net472\testTworzenieTabel.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\48502\source\repos\DodanieTabeliDoEnovy\testTworzenieTabel\testTworzenieTabel\testTworzenieTabel\obj\Debug\net472\testTworzenieTabel.AssemblyInfoInputs.cache
+C:\Users\48502\source\repos\DodanieTabeliDoEnovy\testTworzenieTabel\testTworzenieTabel\testTworzenieTabel\obj\Debug\net472\testTworzenieTabel.AssemblyInfo.cs
+C:\Users\48502\source\repos\DodanieTabeliDoEnovy\testTworzenieTabel\testTworzenieTabel\testTworzenieTabel\obj\Debug\net472\testTworzenieTabel.csproj.CoreCompileInputs.cache
+C:\Users\48502\source\repos\DodanieTabeliDoEnovy\testTworzenieTabel\testTworzenieTabel\testTworzenieTabel\obj\Debug\net472\testTworzenieTabel.dll
+C:\Users\48502\source\repos\DodanieTabeliDoEnovy\testTworzenieTabel\testTworzenieTabel\testTworzenieTabel\obj\Debug\net472\testTworzenieTabel.pdb
+C:\Users\48502\source\repos\DodanieTabeliDoEnovy\testTworzenieTabel\testTworzenieTabel\bin\Debug\net472\testTworzenieTabel.dll
+C:\Users\48502\source\repos\DodanieTabeliDoEnovy\testTworzenieTabel\testTworzenieTabel\bin\Debug\net472\testTworzenieTabel.pdb
