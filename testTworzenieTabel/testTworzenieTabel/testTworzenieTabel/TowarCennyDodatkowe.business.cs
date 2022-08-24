@@ -18,7 +18,7 @@ using Soneta.Types;
 using Soneta.Towary;
 using testTworzenieTabel.TowarCennyDodatkowe;
 
-[assembly: ModuleType("TowarCennyDodatkowe", typeof(testTworzenieTabel.TowarCennyDodatkowe.TowarCennyDodatkoweModule), 4, "TowarCennyDodatkowe", 1, VersionNumber=1)]
+[assembly: ModuleType("TowarCennyDodatkowe", typeof(testTworzenieTabel.TowarCennyDodatkowe.TowarCennyDodatkoweModule), 4, "TowarCennyDodatkowe", 1, VersionNumber=27)]
 
 namespace testTworzenieTabel.TowarCennyDodatkowe {
 
@@ -44,12 +44,12 @@ namespace testTworzenieTabel.TowarCennyDodatkowe {
 		[Browsable(false)]
 		public TowaryModule Towary => moduleTowary ?? (moduleTowary = TowaryModule.GetInstance(Session));
 
-		private static Soneta.Business.App.TableInfo tableInfoCennyDodatkowe = new Soneta.Business.App.TableInfo.Create<CennyDodatkowe, CennaDodatkowa, CennaDodatkowaRecord>("CennaDod") {
+		public static readonly Soneta.Business.App.TableInfo CennyDodatkoweTableInfo = new Soneta.Business.App.TableInfo.Create<CennyDodatkowe, CennaDodatkowa, CennaDodatkowaRecord>("CennaDod") {
 		};
 
-		public CennyDodatkowe CennyDodatkowe => (CennyDodatkowe)Session.Tables[tableInfoCennyDodatkowe];
+		public CennyDodatkowe CennyDodatkowe => (CennyDodatkowe)Session.Tables[CennyDodatkoweTableInfo];
 
-		private static Soneta.Business.App.KeyInfo keyInfoCennaDodatkowaTowar = new Soneta.Business.App.KeyInfo(tableInfoCennyDodatkowe, table => new CennaDodatkowaTable.TowarRelation(table)) {
+		private static Soneta.Business.App.KeyInfo keyInfoCennaDodatkowaTowar = new Soneta.Business.App.KeyInfo(CennyDodatkoweTableInfo, table => new CennaDodatkowaTable.TowarRelation(table)) {
 			Name = "CennaDodatkowa_Towar",
 			RelationTo = "Towar",
 			DeleteCascade = true,
@@ -60,9 +60,10 @@ namespace testTworzenieTabel.TowarCennyDodatkowe {
 			KeyFields = new[] {"Towar", "ID"},
 		};
 
-		private static Soneta.Business.App.KeyInfo keyInfoCennaDodatkowaWgTowaru = new Soneta.Business.App.KeyInfo(tableInfoCennyDodatkowe, table => new CennaDodatkowaTable.WgTowaruKey(table)) {
+		private static Soneta.Business.App.KeyInfo keyInfoCennaDodatkowaWgTowaru = new Soneta.Business.App.KeyInfo(CennyDodatkoweTableInfo, table => new CennaDodatkowaTable.WgTowaruKey(table)) {
 			Name = "WgTowaru",
 			Unique = true,
+			PrimaryKey = true,
 			KeyFields = new[] {"Towar"},
 		};
 
@@ -81,7 +82,7 @@ namespace testTworzenieTabel.TowarCennyDodatkowe {
 
 			protected CennaDodatkowaTable() {}
 
-			public class TowarRelation : Key<CennaDodatkowa> {
+			public partial class TowarRelation : Key<CennaDodatkowa> {
 				internal TowarRelation(Table table) : base(table) {
 				}
 
@@ -95,7 +96,7 @@ namespace testTworzenieTabel.TowarCennyDodatkowe {
 
 			public TowarRelation WgTowar => (TowarRelation)Session.Keys[keyInfoCennaDodatkowaTowar];
 
-			public class WgTowaruKey : Key<CennaDodatkowa> {
+			public partial class WgTowaruKey : Key<CennaDodatkowa> {
 				internal WgTowaruKey(Table table) : base(table) {
 				}
 
@@ -116,6 +117,8 @@ namespace testTworzenieTabel.TowarCennyDodatkowe {
 			/// <seealso cref="TowarCennyDodatkoweModule"/>
 			public new TowarCennyDodatkoweModule Module => (TowarCennyDodatkoweModule)base.Module;
 
+			public System.Linq.IQueryable<CennaDodatkowa> AsQuery() => AsQuery<CennaDodatkowa>();
+
 			/// <summary>
 			/// Typowany indekser dostarczający obiekty znajdujące się w tej tabeli przy pomocy 
 			/// ID identyfikującego jednoznacznie obiekt w systemie.
@@ -134,7 +137,7 @@ namespace testTworzenieTabel.TowarCennyDodatkowe {
 			/// <seealso cref="CennaDodatkowa"/>
 			public new CennaDodatkowa[] this[int[] ids] => (CennaDodatkowa[])base[ids];
 
-			protected override Row CreateRow(RowCreator creator) => new CennaDodatkowa();
+			protected override Row CreateRow(RowCreator creator) => new CennaDodatkowa(creator);
 
 			[Soneta.Langs.TranslateIgnore]
 			protected override sealed void PrepareNames(StringBuilder names, string divider) {
@@ -157,7 +160,11 @@ namespace testTworzenieTabel.TowarCennyDodatkowe {
 				record = (CennaDodatkowaRecord)rec;
 			}
 
-			protected CennaDodatkowaRow() : base(true) {
+			protected CennaDodatkowaRow(RowCreator creator) : base(false) {}
+			protected CennaDodatkowaRow([Required] Towar towar) : base(true) {
+				if (towar==null) throw new RequiredException(this, "Towar");
+				GetRecord();
+				record.Towar = towar;
 			}
 
 			protected override Row PrimaryRow => (Row)Towar;
@@ -168,19 +175,6 @@ namespace testTworzenieTabel.TowarCennyDodatkowe {
 				get {
 					if (record==null) GetRecord();
 					return (Towar)GetRowReference(ref record.Towar);
-				}
-				set {
-					CennaDodatkowaSchema.TowarBeforeEdit?.Invoke((CennaDodatkowa)this, ref value);
-					System.Diagnostics.Debug.Assert(value==null || State==RowState.Detached || value.State==RowState.Detached || Session==value.Session);
-					GetEdit(record==null, false);
-					if (value==null) throw new RequiredException(this, "Towar");
-					record.Towar = value;
-					LockGuidedRoot();
-					if (State!=RowState.Detached) {
-						ResyncSet(keyInfoCennaDodatkowaTowar);
-						ResyncSet(keyInfoCennaDodatkowaWgTowaru);
-					}
-					CennaDodatkowaSchema.TowarAfterEdit?.Invoke((CennaDodatkowa)this);
 				}
 			}
 
@@ -250,7 +244,7 @@ namespace testTworzenieTabel.TowarCennyDodatkowe {
 			[Browsable(false)]
 			public TowarCennyDodatkoweModule Module => Table.Module;
 
-			protected override Soneta.Business.App.TableInfo TableInfo => tableInfoCennyDodatkowe;
+			protected override Soneta.Business.App.TableInfo TableInfo => CennyDodatkoweTableInfo;
 
 			public sealed override AccessRights GetObjectRight() {
 				AccessRights ar = CalcObjectRight();
@@ -268,12 +262,6 @@ namespace testTworzenieTabel.TowarCennyDodatkowe {
 				bool result = false;
 				CennaDodatkowaSchema.OnCalcReadOnly?.Invoke((CennaDodatkowa)this, ref result);
 				return result;
-			}
-
-			class TowarRequiredVerifier : RequiredVerifier {
-				internal TowarRequiredVerifier(IRow row) : base(row, "Towar") {
-				}
-				protected override bool IsValid() => ((CennaDodatkowaRow)Row).Towar!=null;
 			}
 
 			class CenaNettoRequiredVerifier : RequiredVerifier {
@@ -302,7 +290,6 @@ namespace testTworzenieTabel.TowarCennyDodatkowe {
 
 			protected override void OnAdded() {
 				base.OnAdded();
-				Session.Verifiers.Add(new TowarRequiredVerifier(this));
 				System.Diagnostics.Debug.Assert(record.Towar==null || record.Towar.State==RowState.Detached || Session==record.Towar.Session);
 				Session.Verifiers.Add(new CenaNettoRequiredVerifier(this));
 				Session.Verifiers.Add(new CenaBruttoRequiredVerifier(this));
@@ -370,14 +357,6 @@ namespace testTworzenieTabel.TowarCennyDodatkowe {
 		}
 
 		public static class CennaDodatkowaSchema {
-
-			internal static RowDelegate<CennaDodatkowaRow, Towar> TowarBeforeEdit;
-			public static void AddTowarBeforeEdit(RowDelegate<CennaDodatkowaRow, Towar> value)
-				=> TowarBeforeEdit = (RowDelegate<CennaDodatkowaRow, Towar>)Delegate.Combine(TowarBeforeEdit, value);
-
-			internal static RowDelegate<CennaDodatkowaRow> TowarAfterEdit;
-			public static void AddTowarAfterEdit(RowDelegate<CennaDodatkowaRow> value)
-				=> TowarAfterEdit = (RowDelegate<CennaDodatkowaRow>)Delegate.Combine(TowarAfterEdit, value);
 
 			internal static RowDelegate<CennaDodatkowaRow, DoubleCy> CenaNettoBeforeEdit;
 			public static void AddCenaNettoBeforeEdit(RowDelegate<CennaDodatkowaRow, DoubleCy> value)
@@ -454,6 +433,9 @@ namespace testTworzenieTabel.TowarCennyDodatkowe {
 	[System.CodeDom.Compiler.GeneratedCode("Soneta.Generator", "4")]
 	public static class StaticsTowarCennyDodatkoweModule {
 		public static TowarCennyDodatkoweModule GetTowarCennyDodatkowe(this Session session) => TowarCennyDodatkoweModule.GetInstance(session);
+
+		public static TResult Record<TResult>(this IRecordInvoker<CennaDodatkowa, TResult> row, Action<TowarCennyDodatkoweModule.CennaDodatkowaRecord> action)
+		    => row.InvokeAction(action, (rec, act) => ((Action<TowarCennyDodatkoweModule.CennaDodatkowaRecord>)act)((TowarCennyDodatkoweModule.CennaDodatkowaRecord)rec));
 	}
 
 }
