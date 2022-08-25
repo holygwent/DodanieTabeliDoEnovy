@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <!-- Zawiera informację nagłówkową pliku XML oraz informację o użytym kodowaniu znaków. -->
 <module xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.enova.pl/schema/business_struct.xsd" xsi:schemaLocation="http://www.enova.pl/schema/ http://www.enova.pl/schema/business_struct.xsd"
- name="TowarCennyDodatkowe" namespace="testTworzenieTabel.TowarCennyDodatkowe" versionName="TowarCennyDodatkowe" versionNumber="27">
-  <!-- 
+ name="TowarCennyDodatkowe" namespace="testTworzenieTabel.TowarCennyDodatkowe" versionName="TowarCennyDodatkowe" versionNumber="93">
+	<!-- 
   Główny element deklarujący nagłówek modułu. 
   
   xmlns - wszystkie elementy i atrybuty zostały zadeklarowane w xml-namespace http://www.enova.pl/schema/business_struct.xsd, dlatego konieczne jest użycie atrybutu xmlns, który określa ten właśnie namespace.
@@ -15,14 +15,14 @@
   -->
 	<using>Soneta.Types</using>
 	<using >Soneta.Towary</using>
-  <!-- 
+	<!-- 
   Ten atrybut deklaruje folder, w którym będą poszukiwane pozostałe pliki business.xml. Wczytywane są wszystkie  pliki ze wskazanego foldera oraz z polderów podrzędnych. W tym przypadku pozostałe deklaracje business.xml znajdują się w podkatalogu Generator.
   -->
 
-  <!-- 
+	<!-- 
   Określa namespaces Microsoft.NET Framework, których identyfikatory są używane przez ten moduł. W tym przypadku pole Dokument odnosi się do obiektu modułu handel DokumentHandlowy. Możliwe jest użycie wielu elementów using.
   -->
-	<table name="CennaDodatkowa"
+<table name="CennaDodatkowa"
 		   tablename="CennyDodatkowe"
 		   tablecaption="Cenny Dodatkowe"
 		   guided="Child"
@@ -45,6 +45,9 @@
 			 keyprimary="true"
 			 >
 			<keycol name="Towar"/>
+			<keycol name="DataOd"/>
+		
+	
 		</key>
 
 		<col name="CenaNetto"
