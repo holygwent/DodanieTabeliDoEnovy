@@ -57,3 +57,52 @@ W celu stworzenie relacji 1 do wiele zamień business.xml następująco (napisz 
 
 
 	</table>
+	
+</br>
+relacja 1 do 1 (zwróć uwage na klucz)
+<table name="CennaDodatkowa"
+		   tablename="CennyDodatkowe"
+		   tablecaption="Cenny Dodatkowe"
+		   guided="Child"
+		 >
+
+
+		<col name="Towar"
+			 type="Towar"
+			 readonly="true"
+			 required ="true"
+			 caption="Towar"
+			 relname="CennaDodatkowa_Towar" 
+			 delete="cascade"
+			 relguided="inner"
+			 children="Fields"
+			 
+			 />
+		<key name="WgTowaru"
+			 keyunique="true"
+			 keyprimary="true"
+			 >
+			<keycol name="Towar"/>
+		</key>
+
+		<col name="CenaNetto"
+			 required="true"
+			 type="doublecy"
+			 />
+
+		<col name="CenaBrutto"
+			 required="true"
+			 type="doublecy"
+			 />
+
+		<col name="DataOd"
+			 required="true"
+			 type="date"
+			 />
+		<col name="DataDo"
+			 required="true"
+			 type="date"
+			 />
+
+
+	</table>
