@@ -7,7 +7,7 @@ Kolejnośc wykonywanych zadań:<br>
 4.W celu dodania zakładki edytowanie po kliknięciu dodajemy pageform CennaDodatkowa.ogolne.pageform.xml<br>
 5. w celu dodanie zakładki po lewej stronie obiektu zawierającego naszą nową tabele tworzymy extender który pobiera widok oraz pageform (TowaryExtender.cs,Towar.CennaDodatkowa.pageform.xml)<br>
 
-W celu stworzenie relacji 1 do wiele zamień business.xml następująco 
+W celu stworzenie relacji 1 do wiele zamień business.xml następująco (napisz odpowiednio klucz)
 <table name="CennaDodatkowa"
 		   tablename="CennyDodatkowe"
 		   tablecaption="Cenny Dodatkowe"
