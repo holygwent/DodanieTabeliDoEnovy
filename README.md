@@ -6,3 +6,103 @@ Kolejnośc wykonywanych zadań:<br>
 3.Stworzenie widoku używający viewform.xml są to pliki CennaDodatkowaViewInfo.cs oraz CennaDodatkowaViewInfo.viewform.xml<br>
 4.W celu dodania zakładki edytowanie po kliknięciu dodajemy pageform CennaDodatkowa.ogolne.pageform.xml<br>
 5. w celu dodanie zakładki po lewej stronie obiektu zawierającego naszą nową tabele tworzymy extender który pobiera widok oraz pageform (TowaryExtender.cs,Towar.CennaDodatkowa.pageform.xml)<br>
+
+W celu stworzenie relacji 1 do wiele zamień business.xml następująco (napisz odpowiednio klucz)
+<table name="CennaDodatkowa"
+		   tablename="CennyDodatkowe"
+		   tablecaption="Cenny Dodatkowe"
+		   guided="Child"
+		 >
+
+
+		<col name="Towar"
+			 type="Towar"
+			 readonly="true"
+			 required ="true"
+			 caption="Towar"
+			 relname="CennaDodatkowa_Towar" 
+			 delete="cascade"
+			 relguided="inner"
+			 children="Fields"
+			 
+			 />
+		<key name="WgTowaru"
+			 keyunique="true"
+			 keyprimary="true"
+			 >
+			<keycol name="Towar"/>
+			<keycol name="DataOd"/>
+		
+	
+		</key>
+
+		<col name="CenaNetto"
+			 required="true"
+			 type="doublecy"
+			 />
+
+		<col name="CenaBrutto"
+			 required="true"
+			 type="doublecy"
+			 />
+
+		<col name="DataOd"
+			 required="true"
+			 type="date"
+			 />
+		<col name="DataDo"
+			 required="true"
+			 type="date"
+			 />
+
+
+	</table>
+	
+</br>
+relacja 1 do 1 (zwróć uwage na klucz)
+<table name="CennaDodatkowa"
+		   tablename="CennyDodatkowe"
+		   tablecaption="Cenny Dodatkowe"
+		   guided="Child"
+		 >
+
+
+		<col name="Towar"
+			 type="Towar"
+			 readonly="true"
+			 required ="true"
+			 caption="Towar"
+			 relname="CennaDodatkowa_Towar" 
+			 delete="cascade"
+			 relguided="inner"
+			 children="Fields"
+			 
+			 />
+		<key name="WgTowaru"
+			 keyunique="true"
+			 keyprimary="true"
+			 >
+			<keycol name="Towar"/>
+		</key>
+
+		<col name="CenaNetto"
+			 required="true"
+			 type="doublecy"
+			 />
+
+		<col name="CenaBrutto"
+			 required="true"
+			 type="doublecy"
+			 />
+
+		<col name="DataOd"
+			 required="true"
+			 type="date"
+			 />
+		<col name="DataDo"
+			 required="true"
+			 type="date"
+			 />
+
+
+	</table>
